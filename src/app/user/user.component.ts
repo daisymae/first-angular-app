@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
   selector: 'app-user',
   imports: [],
@@ -7,19 +7,20 @@ import { Component, EventEmitter, Input, Output, output } from '@angular/core';
 })
 export class UserComponent {
   // the '!' tells Angular we know it will be set
-  @Input( { required: true }) id!: string;
-  @Input({required: true}) avatar!: string;
-  @Input({required: true}) name!: string;
-  // @Output() select = new EventEmitter();
-  // the signals way, but still an EventEmitter
-  // makes it so don't need decorators for output
-  select = output<string>();
+  // bring in the input as an object instead of individual fields
+  @Input( { required: true }) user!: {
+    id: string;
+    avatar: string;
+    name: string;
+  };
+  // type not required on EventEmitter, but extra safety
+  @Output() select = new EventEmitter<string>();
 
    get imagePath() {
-    return 'assets/users/' + this.avatar;
+    return 'assets/users/' + this.user.avatar;
   }
 
   onSelectUser() {
-    this.select.emit(this.id);
+    this.select.emit(this.user.id);
   }
 }
