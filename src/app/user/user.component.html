@@ -3,8 +3,8 @@
     <!-- when using signal, have to call the selectedUser as a function -->
      <!-- also imagePath is now linked to signal w/call to computed, so needs to be called as a function -->
     <img
-      [src]="imagePath"
-      [alt]="name"
+      [src]="imagePath()"
+      [alt]="name()"
     />
-    <span>{{ name }}</span>
+    <span>{{ name() }}</span>
   </button>
