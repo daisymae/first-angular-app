@@ -2,32 +2,26 @@
 
 <main>
   <ul id="users">
-    <li>
-      <app-user
-        [user]="users[0]"
-        (select)="onSelectUser($event)"
-      />
-    </li>
-    <li>
-      <app-user
-        [user]="users[1]"
-        (select)="onSelectUser($event)"
-      />
-    </li>
-    <li>
-      <app-user
-        [user]="users[2]"
-        (select)="onSelectUser($event)"
-      />
-    </li>
-    <li>
-      <app-user
-        [user]="users[3]"
-        (select)="onSelectUser($event)"
-      />
-    </li>
+    <!-- the track helps Angular keep track of which object is with each output item -->
+     <!-- @for and @if added in version 17 -->
+    <!-- @for (user of users; track user.id){ -->
+     <!-- for older versions do it this way -->
+      <li *ngFor="let user of users">
+        <app-user
+          [user]="user"
+          (select)="onSelectUser($event)"
+        />
+      </li>
+    <!-- } -->
   </ul>
 
-  <app-tasks [name]="selectedUser.name"/>
+  <!-- @if(selectedUser) { -->
+   <!-- for older versions do it this way -->
+    <app-tasks *ngIf="selectedUser; else fallback" [name]="selectedUser.name"/>
+  <!-- } @else { -->
+  <ng-template #fallback>
+    <p id="fallback">Select a user to see their tasks!</p>
+  </ng-template>
+  <!-- } -->
 </main>
 
