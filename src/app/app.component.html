@@ -4,24 +4,21 @@
   <ul id="users">
     <!-- the track helps Angular keep track of which object is with each output item -->
      <!-- @for and @if added in version 17 -->
-    <!-- @for (user of users; track user.id){ -->
-     <!-- for older versions do it this way -->
-      <li *ngFor="let user of users">
+    @for (user of users; track user.id){
+      <li>
         <app-user
           [user]="user"
+          [selected]="user.id === selectedUserId"
           (select)="onSelectUser($event)"
         />
       </li>
-    <!-- } -->
+    }
   </ul>
 
-  <!-- @if(selectedUser) { -->
-   <!-- for older versions do it this way -->
-    <app-tasks *ngIf="selectedUser; else fallback" [name]="selectedUser.name"/>
-  <!-- } @else { -->
-  <ng-template #fallback>
+  @if(selectedUser) {
+    <app-tasks [userId]="selectedUser.id" [name]="selectedUser.name"/>
+  } @else {
     <p id="fallback">Select a user to see their tasks!</p>
-  </ng-template>
-  <!-- } -->
+  }
 </main>
 

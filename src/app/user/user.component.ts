@@ -1,16 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { User } from './user.model';
 
-// type User = {
-//   id: string;
-//   avatar: string;
-//   name: string;
-// }
-
-interface User {
-  id: string;
-  avatar: string;
-  name: string;
-}
 @Component({
   selector: 'app-user',
   imports: [],
@@ -21,6 +11,7 @@ export class UserComponent {
   // the '!' tells Angular we know it will be set
   // bring in the input as an object instead of individual fields
   @Input( { required: true }) user!: User;
+  @Input( { required: true }) selected!: boolean;
   // type not required on EventEmitter, but extra safety
   @Output() select = new EventEmitter<string>();
 

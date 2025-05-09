@@ -1,5 +1,5 @@
 <div>
-  <button (click)="onSelectUser()">
+  <button [class.active]="selected" (click)="onSelectUser()">
     <!-- when using signal, have to call the selectedUser as a function -->
      <!-- also imagePath is now linked to signal w/call to computed, so needs to be called as a function -->
     <img
