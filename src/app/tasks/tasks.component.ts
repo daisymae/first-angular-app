@@ -20,12 +20,6 @@ export class TasksComponent {
     return this.tasksService.getUserTasks(this.userId);
   }
 
-  // this isn't necessarily wrong, but going to
-  // perform from TaskComponent, rather than emit from there
-  // onCompleteTask(id: string) {
-  //   this.tasksService.removeTask(id);
-  // }
-
   onStartAddTask() {
     this.isAddingTask=true;
   }
